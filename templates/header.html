@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+         body {
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body>
+    <nav class="bg-green-600 text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-code text-white text-2xl"></i>
+                    <span class="text-xl font-bold">EasyDSA</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-4">
+                        <a href="{% url 'home' %}" class="px-3 py-2 rounded-md text-sm font-medium bg-indigo-700">Home</a>
+                        <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-500">Features</a>
+                        <a href="{% url 'visualizers' %}" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-500">Visualizers</a>
+                        <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-500">Profile</a>
+                        <a href="{% url 'login' %} " class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-500 flex items-center" >Login
+                        <i data-icon="arrow-right" class="text-white-500 w-5 h-5 ml-2"></i>
+                        </a>
+                    
+                    </div>
+                </div>
+            <div class="md:hidden">
+                <button class="mobile-menu-button p-2 rounded-md hover:bg-indigo-500">
+                   <i class="fa-solid fa-list"></i>
+                </button>
+            </div>
+            </div>
+            </div>
+        <div class="mobile-menu hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+              <a href="{% url 'home' %}" class="block px-3 py-2 rounded-md text-base font-medium bg-indigo-700 text-white">Home</a>
+              <a href="features.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-indigo-500">Features</a>
+                <a href="{% url 'visualizers' %}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-indigo-500">Visualizers</a>
+                <a href="profile.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-indigo-500">Profile</a>
+                <a href="{% url 'login' %}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-indigo-500">Login</a>  
+            </div>
+        </div>
+    </nav>
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-button').addEventListener('click', function() {
+            document.querySelector('.mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+    <script>
+        const customIcons = {
+  "arrow-right": `
+    <svg class="w-full h-full" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M23.987 12a2.411 2.411 0 0 0 -0.814 -1.8L11.994 0.361a1.44 1.44 0 0 0 -1.9 2.162l8.637 7.6a0.25 0.25 0 0 1 -0.165 0.437H1.452a1.44 1.44 0 0 0 0 2.88h17.111a0.251 0.251 0 0 1 0.165 0.438l-8.637 7.6a1.44 1.44 0 1 0 1.9 2.161L23.172 13.8a2.409 2.409 0 0 0 0.815 -1.8Z"></path>
+    </svg>
+  `
+};
+
+//Replace <i data-icon="name">
+    document.addEventListener("DOMContentLoaded", () => {
+          document.querySelectorAll("[data-icon]").forEach(el => {
+            const name = el.getAttribute("data-icon");
+            if (customIcons[name]) {
+              el.innerHTML = customIcons[name];
+              el.classList.add("inline-block");
+            }
+          });
+        });
+    </script>
+
+    <!-- Feather Icons Init -->
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>

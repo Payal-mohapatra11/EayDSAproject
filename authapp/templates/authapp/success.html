@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+         body {
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <nav class="bg-green-600 text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-code text-white text-2xl"></i>
+                    <span class="text-xl font-bold">EasyDSA</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-4">
+                        <a href="#" class="px-3 py-2 rounded-md text-sm font-medium bg-indigo-700">Home</a>
+                        <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-500">Features</a>
+                        <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-500">Visualizers</a>
+                        {% if user.is_authenticated %}
+                        <a href="#" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-500">Profile</a>
+                        <a href="{% url 'logout' %}" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-500 flex items-center" >Logout
+                             {% else %}
+                             
+                        <a href="{% url 'signup' %}" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-500">Signup</a>
+                        <i data-icon="arrow-right" class="text-white-500 w-5 h-5 ml-2"></i>
+                         {% endif %}
+                        </a>
+                    
+                    </div>
+                </div>
+            <div class="md:hidden">
+                <button class="mobile-menu-button p-2 rounded-md hover:bg-indigo-500">
+                   <i class="fa-solid fa-list"></i>
+                </button>
+            </div>
+            </div>
+            </div>
+        <div class="mobile-menu hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+              <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium bg-indigo-700 text-white">Home</a>
+              <a href="features.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-indigo-500">Features</a>
+                <a href="visualizers.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-indigo-500">Visualizers</a>
+                 {% if user.is_authenticated %}
+                <a href="profile.html" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-indigo-500">Profile</a>
+                <a href="{% url 'logout' %}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-indigo-500">Logout</a>  
+                {% else %}
+                 <a href="{% url 'signup' %}" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-500">Signup</a>
+                  {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <div class="min-h-screen flex items-center justify-center bg-gray-100 ">
+        <div class="max-w-md w-ful p-8 bg-white rounded-lg shadow-md">
+        <div class="text-center mb-8">
+               {# Google profile image #}
+    {% if user.socialaccount_set.all %}
+        <img
+            src="{{ user.socialaccount_set.all.0.get_avatar_url }}"
+            alt="Google Profile"
+            style="width:70px; height:70px; border-radius:50%; border:2px solid #4ade80;"
+        >
+     {% endif %}
+
+     <h2>Welcome {{ request.user.username }}</h2>
+       <p>You are logged in!</p>
+        </div>
+        </div>
+    </div>
+    {% include 'footer.html' %} 
+</body>
+</html>
